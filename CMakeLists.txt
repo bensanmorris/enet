@@ -92,3 +92,14 @@ add_library(enet STATIC
 if (MINGW)
     target_link_libraries(enet winmm ws2_32)
 endif()
+
+set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin"          CACHE PATH "Installation directory for executables")
+set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib"          CACHE PATH "Installation directory for libraries")
+set(INSTALL_INC_DIR "${CMAKE_INSTALL_PREFIX}/include/enet" CACHE PATH "Installation directory for headers")
+
+install(TARGETS enet
+	RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
+	ARCHIVE DESTINATION "${INSTALL_LIB_DIR}"
+	LIBRARY DESTINATION "${INSTALL_LIB_DIR}")
+	
+install(FILES ${INCLUDE_FILES} DESTINATION "${INSTALL_INC_DIR}")
